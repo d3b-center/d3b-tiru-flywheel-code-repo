@@ -11,7 +11,7 @@ Available scripts are organized into the following directories:
 | delete | deleting operations (tread with caution!) |
 | file_classifications | updating or adding [Flywheel classifications](https://docs.flywheel.io/hc/en-us/articles/360007560934-Data-Classification) |
 | files | file-level operations |
-| gears | all things gear related (e.g., queing jobs, downloading output files) |
+| gears | all things gear related (e.g., queuing jobs, downloading output files) |
 | other | miscellaneous operations |
 | projects | project-level operations |
 | upload-download | uploading and downloading data |
@@ -26,4 +26,4 @@ Available scripts are organized into the following directories:
 3. files/rename_file.py: Code renames a acquisition file based on user input.
 
 ## Other notes
-- DataViews can be a powerful tool for loading info into a pandas DataFrame and filtering to specific fields of-interest (e.g., instead of looping through all subject/sessions/files in a project, can narrow down to specific subjects or files, for example, and then only continue processing those)
+- DataViews can be a powerful tool for loading info into a pandas DataFrame and filtering to specific fields of-interest (e.g., instead of looping through all subject/sessions/files in a project, can narrow down to specific subjects or files, for example, and then only continue processing those)∂
