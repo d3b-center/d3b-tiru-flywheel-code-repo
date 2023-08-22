@@ -7,8 +7,12 @@ Available scripts are organized into the following directories:
 | Directory Name      | Description |
 | ----------- | ----------- |
 | dataviews | using Flywheel DataViews to get project/file metadata with SQL-like query |
+| delete | deleting operations (tread with caution!) |
+| files | file-level operations |
+| other | miscellaneous operations |
 | projects | project-level operations |
-| running_gears | how to initialize jobs to run gears |
+| run_gears | how to initialize jobs to run gears |
+| upload-download | uploading and downloading data |
 | users | user-level operations |
 
 ## Scripts
