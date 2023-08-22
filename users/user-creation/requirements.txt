@@ -1,0 +1,11 @@
+botocore==1.19.61
+dynamo3==0.4.10
+flywheel==0.5.4
+jmespath==0.10.0
+numpy==1.19.5
+pandas==1.2.1
+pathlib==1.0.1
+python-dateutil==2.8.1
+pytz==2020.5
+six==1.15.0
+urllib3==1.26.3
