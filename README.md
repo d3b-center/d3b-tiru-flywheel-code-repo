@@ -6,12 +6,14 @@ Available scripts are organized into the following directories:
 
 | Directory Name      | Description |
 | ----------- | ----------- |
+| collections | collection-level operations |
 | dataviews | using Flywheel DataViews to get project/file metadata with SQL-like query |
 | delete | deleting operations (tread with caution!) |
+| file_classifications | updating or adding [Flywheel classifications](https://docs.flywheel.io/hc/en-us/articles/360007560934-Data-Classification) |
 | files | file-level operations |
+| gears | all things gear related (e.g., queing jobs, downloading output files) |
 | other | miscellaneous operations |
 | projects | project-level operations |
-| run_gears | how to initialize jobs to run gears |
 | upload-download | uploading and downloading data |
 | users | user-level operations |
 
