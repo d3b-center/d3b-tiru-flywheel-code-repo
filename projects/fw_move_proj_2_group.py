@@ -2,12 +2,13 @@
 #
 
 import flywheel
+import os
 
-fw = flywheel.Client()
+fw = flywheel.Client(os.getenv('FW_API_KEY'))
 
 source_group = 'd3b'
-target_group = 'tiru'
-project_name = 'Arastoo_IRB_protocol'
+target_group = 'chordoma_foundation'
+project_name = 'Chordoma_histology'
 
 print(f'Finding project {project_name} in group {source_group}')
 proj_container = fw.projects.find_first('label='+project_name)

@@ -1,13 +1,12 @@
 import os
 import flywheel
-import os
 
 # ====== user input ====== 
-fw_proj_label='CBTN_ki-67'
-fw_group='tiru'
+fw_proj_label='DayOne_imaging'
+fw_group='dayone'
 api_key=os.getenv('FW_API_KEY')
 
-gear_name_2_cancel = 'deepliif-predict'
+gear_name_2_cancel = 'dicom-fixer'
 
 # ====== access the flywheel client for the instance ====== 
 fw = flywheel.Client(api_key)
