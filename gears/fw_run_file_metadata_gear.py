@@ -39,6 +39,6 @@ for ses in project.sessions.iter():
             # if there is no file metadata, run the gear
             if (file_obj.info=={}):
                 inputs['input-file'] = file_obj
-                job_id = gear2run.run(inputs=inputs) # config={'Subject':subject.label}
+                job_id = gear2run.run(inputs=inputs, tags=['hpc']) # config={'Subject':subject.label}
                 job_list.append(job_id)
                 print(f'Queued: {sub_label}/{ses_label} - {fname}')

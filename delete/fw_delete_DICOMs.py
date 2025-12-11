@@ -1,6 +1,6 @@
 # Delete files on Flywheel
 #   amf
-#   Sept 2021
+#   Sept 2021, updated Oct 2025
 #
 #   for a given project, deletes any DICOM files
 #   uses data-view to select DICOM files
@@ -9,24 +9,22 @@
 # example usage:
 #       python3 fw_delete_DICOMs.py [fw-project]
 
-# ====== user input ====== 
-# fw_proj='CBTN_D0143'
-# api_key='chop.flywheel.io:l60oYWEMahamvtTl7k'
-
-
 import flywheel
 import csv
 import os
 import sys
 
-if len(sys.argv) < 2:
-    print('ERROR: Not enough input arguments (usage: python3 fw_deid_export.py [fw-proj])')
-    sys.exit()
-else:
-    fw_proj = sys.argv[1]
+# ====== user input ====== 
+# if len(sys.argv) < 2:
+#     print('ERROR: Not enough input arguments (usage: python3 fw_deid_export.py [fw-proj])')
+#     sys.exit()
+# else:
+#     fw_proj = sys.argv[1]
+
+fw_proj = 'Adenoma_v2_copy'
 
 # ====== access the flywheel client for the instance ====== 
-fw = flywheel.Client()
+fw = flywheel.Client(os.getenv('FW_API_KEY'))
 
 # ====== set up data view ==========
 view = fw.View(
@@ -37,8 +35,6 @@ view = fw.View(
         "file.name",
         "file.file_id",
         "file.type",
-        "file.info",
-        "file.info.SeriesNumber",
     ],
     include_ids=True,
     include_labels=True,
@@ -47,7 +43,7 @@ view = fw.View(
 )
 
 # ====== loop through subjects ====== 
-project = fw.projects.find_first('label='+fw_proj)
+project = fw.projects.find_first(f'label={fw_proj}')
 df = fw.read_view_dataframe(view, project.id)
 
 df_dicoms = df[df['file.type']=='dicom']
@@ -55,9 +51,13 @@ df_dicoms = df[df['file.type']=='dicom']
 if df_dicoms.empty:
     print('No DICOMs found in '+fw_proj)
 else:
+    n_files = len(df_dicoms)
     for ind,row in df_dicoms.iterrows():
-        fw.delete_acquisition_file(row['acquisition.id'],row['file.name'])
-        print(sub['label']+' file '+file['name']+' deleted on Flywheel')
+        sub = row['subject.label']
+        ses = row['session.label']
+        file_name = row['file.name']
+        fw.delete_acquisition_file(row['acquisition.id'],file_name)
+        print(f'{ind+1}/{n_files} {sub}/{ses} file {file_name} deleted on Flywheel')
 
 # ====== delete empty acquisition containers ====== 
 for sub in project.subjects():
@@ -65,6 +65,4 @@ for sub in project.subjects():
         for acq in ses.acquisitions():
             if not acq.files:
                 fw.delete_acquisition(acq.id)
-                print(sub['label']+' file '+acq['label']+' empty acquisition deleted on Flywheel')
-
-                
+                print(f'{sub.label}/{ses.label} file {acq.label} empty acquisition deleted on Flywheel')

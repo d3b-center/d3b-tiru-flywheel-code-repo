@@ -18,5 +18,15 @@ completed_jobs = fw.jobs.find('state=complete',
                               f'gear_info.name={gear_name}',
                               f'created>={jobs_creation_date}')
 
+running_jobs = fw.jobs.find('state=running',
+                              f'gear_info.name={gear_name}',
+                              f'created>={jobs_creation_date}')
+
+failed_jobs = fw.jobs.find('state=failed',
+                              f'gear_info.name={gear_name}',
+                              f'created>={jobs_creation_date}')
+
 print(f'N pending jobs:   {len(pending_jobs)}')
+print(f'N running jobs: {len(running_jobs)}')
 print(f'N completed jobs: {len(completed_jobs)}')
+print(f'N failed jobs: {len(failed_jobs)}')
